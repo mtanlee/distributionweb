@@ -1,5 +1,5 @@
 # distributionweb
-docker registry v2 管理软件:后端是基于golang写的，前端是angluarjs写的
+
 这是个管理docker registry 版本2的web
 
 ###项目背景
