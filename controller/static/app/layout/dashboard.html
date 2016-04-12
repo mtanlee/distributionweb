@@ -1,0 +1,43 @@
+<div class="ui fixed inverted main menu">
+<div class="container">
+    <a ui-sref="dashboard.registry" class="title item" id="logo">
+        docker镜像仓库
+    </a>
+    <a ui-sref="dashboard.registry" ui-sref-active="active" class="title item">
+        <i class="fork icon"></i> 仓库
+    </a>
+    <a ui-sref="dashboard.accounts" ui-sref-active="active" class="title item">
+        <i class="user icon"></i> 账户
+    </a>
+    <a ui-sref="dashboard.events" ui-sref-active="active" class="title item">
+        <i class="browser icon"></i> 日志
+    </a>
+    <div class="ui right inverted menu">
+         <div class="ui item">
+            <div class="ui dropdown">
+                {{ username }} <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div ui-sref="logout" class="item"><i class="sign out icon"></i>注销</div>
+                </div>
+            </div>
+        </div>
+        <div class="ui item">
+            <a ui-sref="dashboard.help">
+                <i class="help circle icon"></i>
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="pusher">
+    <div class="ui active inverted dimmer" ng-show="isLoadingView">
+        <div class="ui loader"></div>
+    </div>
+    <div id="content" ui-view>
+    </div>
+</div>
+
+<script>
+$('.ui.dropdown').dropdown();
+</script>

@@ -1,0 +1,29 @@
+rethinkdb:
+    image: rethinkdb
+    ports:
+        - "8080"
+        - "28015"
+        - "29015"
+media:
+    build: .
+    entrypoint: /bin/bash
+    dockerfile: Dockerfile.build
+    command: -c "make media && sleep infinity"
+    working_dir: /opt/godep/src/github.com/mtanlee/distributionweb/controller/static
+    volumes:
+        - "/opt/godep/src/github.com/mtanlee/distributionweb/controller/static"
+
+controller:
+    build: .
+    dockerfile: Dockerfile.build
+    entrypoint: /bin/bash
+    command: -c "cd controller && ./controller -D server --rethinkdb-addr rethinkdb:28015" 
+    links:
+       - rethinkdb
+    volumes:
+       - ./config:/etc/distributionweb/certs
+       - "/opt/godep/src/github.com/mtanlee/distributionweb/controller/static"
+    volumes_from:
+       - media
+    ports:
+       - "8080:8080"

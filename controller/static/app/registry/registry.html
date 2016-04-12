@@ -1,0 +1,85 @@
+<div class="ui small remove modal transition" style="margin-top: -98px;">
+<i class="close icon"></i>
+<div class="header">
+    删除镜像: {{ vm.selectedRepository.name }}
+</div>
+<div class="content">
+    <p>您确实要删除这个镜像?</p>
+</div>
+<div class="actions">
+    <div class="ui negative button">
+        否
+    </div>
+    <div ng-click="vm.removeRepository()" class="ui positive right labeled icon button">
+        是
+        <i class="checkmark icon"></i>
+    </div>
+</div>
+</div>
+
+<div class="ui padded grid">
+    <div class="two column row">
+        <div class="left floated column">
+            <div ng-click="vm.refresh()" class="ui small blue labeled icon button">
+                <i class="refresh icon"></i> 刷新 
+            </div>
+        </div>
+    
+        <div class="right aligned right floated column">
+            <div class="ui small icon input">
+                <input ng-model="tableFilter" placeholder="Search repositories..."/>
+                <i class="search icon"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" ng-show="vm.repositories.length === 0">
+        <div class="column">
+            <div class="ui icon message">
+                <i class="info icon"></i>
+                <div class="content">
+                    <div class="header">
+                        镜像
+                    </div>
+                    <p>仓库里面没有镜像.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" ng-hide="vm.repositories.length === 0">
+    <div class="column">
+    <table class="ui sortable celled table">
+        <thead ng-hide="">
+            <tr>
+                <th>镜像</th>
+                <th>标签</th>
+                <th>计算机架构</th>
+                <th>镜像版本</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="r in vm.repositories | filter:tableFilter">
+                <td>{{r.name}}</td>
+                <td>{{r.tag}}</td>
+                <td>{{r.architecture}}</td>
+                <td>{{r.schemaVersion}}</td>
+                <td class="collapsing">
+                  <!--  <div ui-sref="dashboard.inspectRepository({name: vm.registryName, namespacerepository: r.name,  tag: r.tag, architecture: r.architecture, schemaVersion: r.schemaversion })" class="compact ui icon button">
+                        <i class="search icon"></i>
+                    </div> --!>
+                    <div ng-click="vm.showRemoveRepositoryDialog(r)" class="compact ui icon button red">
+                        <i class="trash icon"></i>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+</div>
+
+<script>
+    $('.ui.sortable.celled.table').tablesort();
+</script>
