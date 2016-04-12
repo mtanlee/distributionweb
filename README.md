@@ -17,6 +17,6 @@
 
 3.在distributionweb目录下: docker-compose up 
 
-4.如果没有做dns，添加hostname，需要更新config/domain.crt，使用你的registry的domain.crt
+4.如果registry的域名没有做dns，可以通过添加hostname解决，需要更新config/domain.crt，使用你的registry的domain.crt
   docker exec -it distribution_controller_1 bash echo "ip_address hostname" >> /etc/hosts
 ```
