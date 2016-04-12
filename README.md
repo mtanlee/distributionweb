@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ### distributionweb介绍
+=======
+# distributionweb
+
+>>>>>>> 786c97b0da31692ef410d6e4e30fa65484d100a0
 这是个管理docker registry 版本2的web
 
 ###项目背景
