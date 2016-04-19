@@ -21,7 +21,7 @@ controller:
     links:
        - rethinkdb
     volumes:
-       - ./config:/etc/distributionweb/certs
+       - ./controller/config:/etc/distributionweb/certs
        - "/opt/godep/src/github.com/mtanlee/distributionweb/controller/static"
     volumes_from:
        - media
